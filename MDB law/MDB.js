@@ -82,13 +82,10 @@
 		self.language(self.language() === "en" ? "fr" : "en");
 		var hashObj = self.convertHashToObject();
 		hashObj.l = self.language();
-		var newLocation = window.location.href;
-		if (window.location.hash)
-			newLocation = newLocation.replace(window.location.hash, "");
-		newLocation = newLocation.replace("#", "");
-		newLocation += "#" + $.param(hashObj);
-		window.location.href = newLocation;
-		window.location.reload();
+		var newHash = $.param(hashObj);
+		window.location.hash = newHash;
+		if (localStorage)
+			localStorage.language = self.language();
 	};
 	
 	self.navClickHandler = function () {
