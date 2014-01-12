@@ -174,7 +174,7 @@ footer .owner p {
 	border: 1px solid rgba(0, 0, 0, 0.298039);
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 700px) {
 	.content { width: auto; margin: 0; }
 	
     #logo {
@@ -199,4 +199,25 @@ footer .owner p {
 	#copyright, #designedBy { float: none; }
 	#copyright { padding-bottom: 0; }
 	#designedBy { padding-top: 0; }
+}
+
+@media only screen and (max-width: 550px) {
+	#logo {
+		height: 170px;
+		background-image: url(logo_b.png);
+	}
+	#container{ margin-top: -62px; }
+	
+}
+@media only screen and (max-width: 420px) {
+	#logo {
+		background-image: url(logo_bl.png);
+		background-position: right;
+	}
+	#lang { float: right; }
+}
+@media only screen and (max-width: 380px) {
+	#logo {
+		background-position: left;
+	}
 }
