@@ -7,7 +7,7 @@
 	self.enMap = {
 		labelLang: "FRANÇAIS",
 		labelNavHome: "HOME",
-		labelNavServices: "SERVICES",
+		labelNavServices: "EXPERTISE",
 		labelNavContent: "INFORMATION",
 		labelNavContact: "CONTACT US",
 		labelRights: "All rights reserved",
@@ -16,9 +16,9 @@
 	self.frMap = {
 		labelLang: "ENGLISH",
 		labelNavHome: "ACCUEIL",
-		labelNavServices: "SERVICES",
+		labelNavServices: "CHAMPS D'EXPERTISE",
 		labelNavContent: "INFORMATION",
-		labelNavContact: "CONTACTEZ NOUS",
+		labelNavContact: "NOUS REJOINDRE",
 		labelRights: "Tous droits réservés",
 		labelDesignedBy: "Réalisation:"
 	};
@@ -45,6 +45,7 @@
 		var $document = $(document);
 		
 		$document.on("click", "#lang", self.langClickedHandler);
+		$document.on("click", "#homeLangs span", self.enterLangClickedHandler);
 		$document.on("click", "#navbar a", self.navClickHandler);
 		
 		$(".markdown-body > div").each(function () {
@@ -64,9 +65,20 @@
 		if (localStorage)
 			localStorage.language = self.language();
 		
-		if (hashObj.t) 
+		if (hashObj.t) {
 			self.tab(hashObj.t);
-		$("#navbar a[data-tab='" + self.tab() + "']").addClass("navSelected");
+			self.enterLangClickedHandler();
+		}
+		else {
+			self.tab("homeLangs");
+			self.openTab();
+		}
+	};
+	
+	self.openTab = function () {
+		if (self.tab() !== "homeLangs")
+			$("#navbar a[data-tab='" + self.tab() + "']").addClass("navSelected");
+		
 		var $newTab = $("#" + self.tab());
 		$newTab[0].style.display = "";
 		$newTab.animate({ height: Number($newTab[0].getAttribute("data-height")) }, 400);
@@ -78,15 +90,31 @@
 			self.insertGoogleMap();
 	};
 	
+	self.enterLangClickedHandler = function () {
+		self.language(this.getAttribute("data-lang"));
+		
+		document.getElementById("main").style.display = "";
+		document.getElementById("navbar").style.display = "";
+		document.getElementById("homeLangs").style.display = "none";
+		$(".content").removeClass("middlething");
+		self.tab("home");
+		self.openTab();
+	};
+	
 	self.langClickedHandler = function () {
 		self.language(self.language() === "en" ? "fr" : "en");
+	};
+	self.language.subscribe(function (value) {
 		var hashObj = self.convertHashToObject();
 		hashObj.l = self.language();
-		var newHash = $.param(hashObj);
-		window.location.hash = newHash;
-		if (localStorage)
-			localStorage.language = self.language();
-	};
+		var newLocation = window.location.href;
+		if (window.location.hash)
+			newLocation = newLocation.replace(window.location.hash, "");
+		newLocation = newLocation.replace("#", "");
+		newLocation += "#" + $.param(hashObj);
+		window.location.href = newLocation;
+		//window.location.reload();
+	});
 	
 	self.navClickHandler = function () {
 		var $navBtn = $(this);
