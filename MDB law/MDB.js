@@ -45,15 +45,19 @@
 		var $document = $(document);
 		
 		$document.on("click", "#lang", self.langClickedHandler);
-		$document.on("click", "#homeLangs span", self.enterLangClickedHandler);
+		$document.on("click", "#homeLangs span", self.homeLangClickedHandler);
 		$document.on("click", "#navbar a", self.navClickHandler);
 		
+		// Get and save the height of each page element
 		$(".markdown-body > div").each(function () {
 			this.setAttribute("data-height", $(this).height());
 		});
+		// Set all page heights to 0
 		$(".markdown-body > div").height(0).css("display", "none");
 		
-		var hashObj = self.convertHashToObject();
+		var hashObj = self.convertURLHashToObject();
+		
+		// Get the language from the url or from local storage
 		if (hashObj.l) 
 			self.language(hashObj.l);
 		else {
@@ -65,9 +69,10 @@
 		if (localStorage)
 			localStorage.language = self.language();
 		
+		// Get the tab from the url or default to the home page
 		if (hashObj.t) {
 			self.tab(hashObj.t);
-			self.enterLangClickedHandler();
+			self.setupMainPage();
 		}
 		else {
 			self.tab("homeLangs");
@@ -76,10 +81,13 @@
 	};
 	
 	self.openTab = function () {
-		if (self.tab() !== "homeLangs")
-			$("#navbar a[data-tab='" + self.tab() + "']").addClass("navSelected");
+		var $newTab = $(document.getElementById(self.tab()));
 		
-		var $newTab = $("#" + self.tab());
+		if (self.tab() !== "homeLangs") {
+			$(".content")[0].style.width = "675px";
+			$("#navbar a[data-tab='" + self.tab() + "']").addClass("navSelected");
+		}
+		
 		$newTab[0].style.display = "";
 		$newTab.animate({ height: Number($newTab[0].getAttribute("data-height")) }, 400);
 		setTimeout(function () {
@@ -90,22 +98,26 @@
 			self.insertGoogleMap();
 	};
 	
-	self.enterLangClickedHandler = function () {
+	self.homeLangClickedHandler = function () {
 		self.language(this.getAttribute("data-lang"));
-		
+		self.tab("home");
+		self.setupMainPage();
+	};
+	self.setupMainPage = function () {
 		document.getElementById("main").style.display = "";
 		document.getElementById("navbar").style.display = "";
 		document.getElementById("homeLangs").style.display = "none";
 		$(".content").removeClass("middlething");
-		self.tab("home");
+		
 		self.openTab();
 	};
 	
 	self.langClickedHandler = function () {
 		self.language(self.language() === "en" ? "fr" : "en");
 	};
+	// KO observable event handler which updates the url hash whenever the language is changed
 	self.language.subscribe(function (value) {
-		var hashObj = self.convertHashToObject();
+		var hashObj = self.convertURLHashToObject();
 		hashObj.l = self.language();
 		var newLocation = window.location.href;
 		if (window.location.hash)
@@ -113,7 +125,6 @@
 		newLocation = newLocation.replace("#", "");
 		newLocation += "#" + $.param(hashObj);
 		window.location.href = newLocation;
-		//window.location.reload();
 	});
 	
 	self.navClickHandler = function () {
@@ -143,7 +154,7 @@
 			}, 400);
 			
 			// set the new tab in url hash in case of page refresh
-			var hashObj = self.convertHashToObject();
+			var hashObj = self.convertURLHashToObject();
 			hashObj.t = newTab;
 			var newHash = $.param(hashObj);
 			window.location.hash = newHash;
@@ -155,7 +166,7 @@
 		$("#map-container").html(mapContent);
 	};
 	
-	self.convertHashToObject = function () {
+	self.convertURLHashToObject = function () {
 		var oResult = {};
 		var queryString = window.location.hash;
 		if (queryString) {

@@ -1,3 +1,4 @@
+html { overflow-y: scroll; }
 html, body, div, span, applet,
 h1, h2, h3, h4, h5, h6, p, a, img,
 ol, ul, li,
@@ -81,8 +82,14 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 	cursor: pointer;
 }
 #homeLangs { text-align: center; font-size: 16px; }
-
-.content { width: 675px;	 margin: 20px auto; }
+#homeLangs .homeLang:first-child { border-right: 1px solid black; }
+#homeLangs .homeLang:last-child { margin-left: -1px; }
+.content { 
+	width: 500px;
+	margin: 20px auto; 
+	-webkit-transition: width 0.4s;
+    transition: width 0.4s;
+}
 
 #container { border: 0px solid #2a2a2a; margin-top: -32px; }
 
@@ -97,7 +104,7 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 	border-top-width: 0;
 }
 
-#navbar a {
+#navbar a , #homeLangs .homeLang{
 	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "Apple Gothic", sans-serif;
 	display: inline-block;
 	cursor: pointer;
@@ -107,20 +114,20 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 	border-bottom-width: 0;
 	color: black/*#63a52a*/;
 	text-decoration: none;
-	-moz-transition: 	color 0.10s ease-in, 
-						background-color 0.10s ease-in,
-						opacity 0.10s;
-    -webkit-transition: color 0.10s ease-in, 
-						background-color 0.10s ease-in,
-						opacity 0.10s;
-    -o-transition: 		color 0.10s ease-in, 
-						background-color 0.10s ease-in,
-						opacity 0.10s;
-    transition: 		color 0.10s ease-in, 
-						background-color 0.10s ease-in,
-						opacity 0.10s;
+	-moz-transition: 	color 0.20s ease-in, 
+						background-color 0.20s ease-in,
+						opacity 0.20s;
+    -webkit-transition: color 0.20s ease-in, 
+						background-color 0.20s ease-in,
+						opacity 0.20s;
+    -o-transition: 		color 0.20s ease-in, 
+						background-color 0.20s ease-in,
+						opacity 0.20s;
+    transition: 		color 0.20s ease-in, 
+						background-color 0.20s ease-in,
+						opacity 0.20s;
 }
-#navbar a:hover, #navbar .navSelected { 
+#navbar a:hover, #navbar .navSelected, #homeLangs .homeLang:hover { 
 	color: white; 
 	background-color: #123B77;
 	opacity: 0.65;
@@ -156,10 +163,16 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 	height: 300px; 
 	width: 100%;
 	-webkit-box-shadow: 0px 0px 15px 6px rgba(128, 128, 128, 0.298039);
+	-moz-box-shadow: 0px 0px 15px 6px rgba(128, 128, 128, 0.298039);
 	box-shadow: 0px 0px 15px 6px rgba(128, 128, 128, 0.298039);
 	border: 1px solid rgba(0, 0, 0, 0.298039);
 }
 
+footer {
+	-webkit-box-shadow: inset 0 0 1em #444, 0 0 1em #444;
+	-moz-box-shadow: inset 0 0 1em #444, 0 0 1em #444;
+	box-shadow: inset 0 0 1em #444, 0 0 1em #444;
+}
 footer .owner {
 	background: #222;
 	border: 5px solid #444;
