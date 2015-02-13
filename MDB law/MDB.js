@@ -50,7 +50,7 @@
 		
 		// Get and save the height of each page element
 		$(".markdown-body > div").each(function () {
-			this.setAttribute("data-height", $(this).height());
+			this.setAttribute("data-height", $(this).height() - 75);
 		});
 		// Set all page heights to 0
 		$(".markdown-body > div").height(0).css("display", "none");
@@ -82,9 +82,10 @@
 	
 	self.openTab = function () {
 		var $newTab = $(document.getElementById(self.tab()));
-		
+		var wWidth = $(window).width();
 		if (self.tab() !== "homeLangs") {
-			$(".content")[0].style.width = "675px";
+			if (wWidth >= 800)
+				$(".content")[0].style.width = "675px";	
 			$("#navbar a[data-tab='" + self.tab() + "']").addClass("navSelected");
 		}
 		
