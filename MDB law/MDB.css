@@ -1,4 +1,4 @@
-html { overflow-y: scroll; }
+
 html, body, div, span, applet,
 h1, h2, h3, h4, h5, h6, p, a, img,
 ol, ul, li,
@@ -12,6 +12,8 @@ article, footer, header {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+html, body { height: 100%; width: 100%; }
 
 /* HTML5 display-role reset for older browsers */
 article, footer, header { display: block; }
@@ -37,7 +39,7 @@ body {
 	background-size: 70px 120px;
 	background-image: url(bg.png);*/
 	background-image: url(montreal.jpg);
-	background-size:   cover;                      /* <------ */
+	background-size: cover;
     background-repeat: no-repeat;
     
 }
@@ -46,9 +48,8 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 .content.middlething header{ height: 185px; }
 .outer {
     display: table;
-    position: absolute;
-    height: 100%;
-    width: 100%;
+	margin: 0 auto;
+	width: 675px;
 }
 
 .middle {
@@ -72,7 +73,7 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 .content.middlething #lang { display: none; }
 #lang {
 	font-size: 15px;
-	padding: 3px 3px 3px 10px;
+	padding: 3px;
 	-moz-transition: color 0.10s ease-in, background-color 0.10s ease-in;
     -webkit-transition: color 0.10s ease-in, background-color 0.10s ease-in;
     -o-transition: color 0.10s ease-in, background-color 0.10s ease-in;
@@ -130,6 +131,7 @@ header, #logo{ height: 145px; box-sizing: border-box; }
     transition: 		color 0.20s ease-in, 
 						background-color 0.20s ease-in,
 						opacity 0.20s;
+	opacity: 0.9;
 }
 #navbar a:hover, #navbar .navSelected, #homeLangs .homeLang:hover { 
 	color: white; 
@@ -139,7 +141,8 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 
 #main {
 	padding: 10px 10px 70px;
-	background-color: #ddd;
+	/*background-color: #ddd;*/
+	background-color: #DCDCCF;
 }
 
 .tab {
@@ -243,18 +246,27 @@ footer .owner p {
 
 @media only screen and (max-width: 800px) {
 	.content { width: auto; margin: 0; }
-	
+	.outer { width: auto; }
     #logo {
-		text-align: center;
-        margin: 0;
-        -moz-background-size: auto 100%;
-        -o-background-size: auto 100%;
-        -webkit-background-size: auto 100%;
-        background-size: auto 100%;
-        background-position: center;
+		margin: 0;
+		background-image: url(logo_b.png);
+		-moz-background-size: auto 100%;
+		-o-background-size: auto 100%;
+		-webkit-background-size: auto 100%;
+		background-size: 100%;
 		text-align: left;
+		position: relative;
     }
-
+	#lang { 
+		position: absolute;
+		top: calc(100% - 60px); 
+	}
+	#contact-container { 
+		border: none; 
+		text-align: left; 
+		padding-left: 10px;
+		width: 100%;
+	}
 	#address-container { float: left; width: 100%;}
 	#map-container { float: left;  width: 100%; }
 	
@@ -266,4 +278,10 @@ footer .owner p {
 	#copyright, #designedBy { float: none; }
 	#copyright { padding-bottom: 0; }
 	#designedBy { padding-top: 0; }
+}
+
+@media only screen and (max-width: 385px) {
+	#logo {
+		background-image: url(logo_crop.png);
+    }
 }
