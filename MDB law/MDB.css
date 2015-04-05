@@ -13,7 +13,12 @@ article, footer, header {
 	vertical-align: baseline;
 }
 
-html, body { height: 100%; width: 100%; }
+html, body { 
+	height: 100%; 
+	width: 100%; 
+	position: fixed;
+	overflow-y: auto;
+}
 
 /* HTML5 display-role reset for older browsers */
 article, footer, header { display: block; }
@@ -37,8 +42,9 @@ body {
 		linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
 		linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
 	background-size: 70px 120px;
-	background-image: url(bg.png);*/
-	background-image: url(montreal.jpg);
+	background-image: url(bg.png);
+	background-image: url(montreal.jpg);*/
+	background-image: url(Canada_Montreal_c.jpg);
 	background-size: cover;
     background-repeat: no-repeat;
     
@@ -144,8 +150,8 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 
 #main {
 	padding: 10px 10px 70px;
-	/*background-color: #ddd;*/
-	background-color: #DCDCCF;
+	background-color: #ddd;
+	/*background-color: #DCDCCF;*/
 }
 
 .tab {
@@ -185,6 +191,12 @@ header, #logo{ height: 145px; box-sizing: border-box; }
 	-moz-box-shadow: 0px 0px 15px 6px rgba(128, 128, 128, 0.298039);
 	box-shadow: 0px 0px 15px 6px rgba(128, 128, 128, 0.298039);
 	border: 1px solid rgba(0, 0, 0, 0.298039);
+}
+#imageLicense {
+	font-family: Arial;
+	font-size: 10px;
+	margin-bottom: 0;
+	margin-top: 20px;
 }
 
 footer {
@@ -281,6 +293,7 @@ footer .owner p {
 	#copyright, #designedBy { float: none; }
 	#copyright { padding-bottom: 0; }
 	#designedBy { padding-top: 0; }
+	body { background-image: none; background-color: #ddd; }
 }
 
 @media only screen and (max-width: 385px) {
