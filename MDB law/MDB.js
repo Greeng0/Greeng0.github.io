@@ -7,8 +7,8 @@
 	self.enMap = {
 		labelLang: "FRANÇAIS",
 		labelNavHome: "HOME",
-		labelNavServices: "EXPERTISE",
-		labelNavContent: "INFORMATION",
+		labelNavServices: "AREAS OF PRACTICE",
+		labelNavContent: "OUR TEAM",
 		labelNavContact: "CONTACT US",
 		labelRights: "All rights reserved",
 		labelDesignedBy: "Web Design:",
@@ -22,9 +22,9 @@
 	self.frMap = {
 		labelLang: "ENGLISH",
 		labelNavHome: "ACCUEIL",
-		labelNavServices: "CHAMPS D'EXPERTISE",
-		labelNavContent: "INFORMATION",
-		labelNavContact: "NOUS REJOINDRE",
+		labelNavServices: "CHAMPS DE PRATIQUE",
+		labelNavContent: "NOTRE ÉQUIPE",
+		labelNavContact: "NOUS JOINDRE",
 		labelRights: "Tous droits réservés",
 		labelDesignedBy: "Réalisation:",
 		labelBGLicense: "\"Canada Montreal Panorama\" par G. Baranski est licencé sous Creative Commons Attribution-Share Alike 3.0 Unported.",
